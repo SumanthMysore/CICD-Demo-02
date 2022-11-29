@@ -1,0 +1,49 @@
+name: VOTEAPP-DEPLOY-CICD
+run-name: ${{ github.actor }} has triggered the workflow.
+on:
+  push:
+    branches: ["master"]
+  workflow_run:
+    workflows: ["VOTEAPP-BUILD-CICD"]
+    types: 
+      - completed
+    
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bootcamp_26_bd-dev/frontend
+    steps:
+      - name: Perform checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository }}
+          ref: dev
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.AWS_USER_ARN }}
+          aws-region: ${{ secrets.EKS_CLUSTER_REGION }}
+
+      - name: Connect to the EKS Cluster
+        run: aws eks update-kubeconfig --region ${{ secrets.EKS_CLUSTER_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
+
+      - name: Run the Deployments
+        run: |
+          kubectl apply -f db-deploy.yml;
+          kubectl apply -f api-deployment.yml;
+          kubectl apply -f fe-deployment.yml
+      
+      - name: Run the Services
+        run: |
+          kubectl apply -f api-service.yml;
+          kubectl apply -f fe-service.yml
+
+      - name: Run the Ingress files
+        run: |
+          kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/aws/deploy.yaml;
+          kubectl apply -f ingress-resource.yml

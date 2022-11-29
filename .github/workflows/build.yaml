@@ -1,0 +1,78 @@
+name: VOTEAPP-BUILD-CICD
+run-name: ${{ github.actor }} has triggered the workflow.
+on:
+  push:
+    branches:
+      - "master"
+jobs:
+  build-frontend-react:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: voteapp-frontend-react
+    steps:
+      - name: Perform checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository }}
+          ref: master
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+
+      - name: Build the Image and Push to GHCR
+        run: |
+          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:latest;
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:latest
+
+  build-api-go:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: voteapp-api-go
+    steps:
+      - name: Perform checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository }}
+          ref: master
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+
+      - name: Build the Image and Push to GHCR
+        run: |
+          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:latest;
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:latest
+
+  build-db-mongo:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: voteapp-db-mongo
+    steps:
+      - name: Perform checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository }}
+          ref: master
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PAT }}
+
+      - name: Build the Image and Push to GHCR
+        run: |
+          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:latest;
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:latest

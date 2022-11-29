@@ -99,22 +99,25 @@ spec:
         type: db
         tier: database
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret 
       containers:
         - name: mongodb
-          image: sumanthmysore/a2-mongo
+          image: ghcr.io/sumanthmysore/a2-mongo:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 27017
-          volumeMounts:
-            - mountPath: /data/db
-              name: mongodb-persistent-storage-claim
-  volumeClaimTemplates:
-    - metadata:
-        name: mongodb-persistent-storage-claim
-        # namespace: cloudacademy
-        annotations:
-          volume.beta.kubernetes.io/storage-class: "standard"
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 1Gi
+  #         volumeMounts:
+  #           - mountPath: /data/db
+  #             name: mongodb-persistent-storage-claim
+  # volumeClaimTemplates:
+  #   - metadata:
+  #       name: mongodb-persistent-storage-claim
+  #       # namespace: cloudacademy
+  #       annotations:
+  #         volume.beta.kubernetes.io/storage-class: "standard"
+  #     spec:
+  #       accessModes: ["ReadWriteOnce"]
+  #       resources:
+  #         requests:
+  #           storage: 1Gi

@@ -13,7 +13,8 @@ spec:
     spec:
       containers:
         - name: api-container
-          image: sumanthmysore/a2-api-go
+          image: ghcr.io/sumanthmysore/a2-api-go:latest
+          imagePullPolicy: Always
           env:
           - name: MONGO_CONN_STR
             value: "mongodb://admin:password@mongo-0.mongo,mongo-1.mongo,mongo-2.mongo:27017/langdb"

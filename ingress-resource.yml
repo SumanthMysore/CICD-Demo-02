@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: frontend.com
+    - host: 18.223.100.61
       http: 
         paths:
           - backend:
@@ -17,15 +17,24 @@ spec:
                 port:
                   number: 80
             pathType: Prefix
-            path: /
-    - host: backend.com
-      http: 
-        paths:
+            path: /frontend
+            
           - backend:
               service:
                 name: api-service
                 port:
                   number: 8080
             pathType: Prefix
-            path: /
+            path: /backend
+          
+    # - host: backend.com
+    #   http: 
+    #     paths:
+    #       - backend:
+    #           service:
+    #             name: api-service
+    #             port:
+    #               number: 8080
+    #         pathType: Prefix
+    #         path: /
           

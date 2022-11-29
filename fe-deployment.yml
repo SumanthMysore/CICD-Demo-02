@@ -13,8 +13,10 @@ spec:
     spec:
       containers:
         - name: fe-container
-          image: sumanthmysore/a2-frontend
+          image: ghcr.io/sumanthmysore/a2-frontend:latest
           imagePullPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-secret  
   replicas: 4
   selector:
     matchLabels:
