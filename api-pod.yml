@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: api-pod
+  labels:
+    type: api
+spec:
+  containers:
+    - name: api-container
+      image: sumanthmysore/a2-api-go

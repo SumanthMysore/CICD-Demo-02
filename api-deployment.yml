@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  labels: 
+    type: api
+spec:
+  template:
+    metadata: 
+      name: api-pod
+      labels:
+        type: api
+    spec:
+      containers:
+        - name: api-container
+          image: sumanthmysore/a2-api-go
+          env:
+          - name: MONGO_CONN_STR
+            value: "mongodb://admin:password@mongo-0.mongo,mongo-1.mongo,mongo-2.mongo:27017/langdb"
+  replicas: 4
+  selector:
+    matchLabels:
+      type: api

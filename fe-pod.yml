@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: fe-pod
+  labels:
+    type: fe
+spec:
+  containers:
+    - name: fe-container
+      image: sumanthmysore/a2-frontend
