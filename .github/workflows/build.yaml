@@ -74,5 +74,5 @@ jobs:
 
       - name: Build the Image and Push to GHCR
         run: |
-          docker build -f db-image.Dockerfile -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:latest;
+          docker build . -f db-image.Dockerfile -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:latest;
           docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:latest
