@@ -11,9 +11,6 @@ on:
 jobs:
   deployment:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: bootcamp_26_bd-dev/frontend
     steps:
       - name: Perform checkout
         uses: actions/checkout@v3
