@@ -18,6 +18,8 @@ spec:
           env:
           - name: MONGO_CONN_STR
             value: "mongodb://admin:password@mongo-0.mongo,mongo-1.mongo,mongo-2.mongo:27017/langdb"
+      imagePullSecrets:
+        - name: ghcr-secret 
   replicas: 4
   selector:
     matchLabels:
