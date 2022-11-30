@@ -1,8 +1,14 @@
 name: VOTEAPP-DEPLOY-CICD
 run-name: ${{ github.actor }} has triggered the workflow.
 on:
+  push:
+    branches:
+      - "master"
+    paths:
+      - "kubernetes-files/**"
   workflow_run:
-    workflows: ["VOTEAPP-BUILD-CICD"]
+    workflows: 
+      - "VOTEAPP-BUILD-CICD"
     types:
       - "completed"
 jobs:

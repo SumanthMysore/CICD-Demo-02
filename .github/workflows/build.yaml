@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - "master"
+    paths:
+      - "voteapp-api-go/**"
+      - "voteapp-db-mongo/**"
+      - "voteapp-frontend-react/**"
 jobs:
   build-frontend-react:
     runs-on: ubuntu-latest
