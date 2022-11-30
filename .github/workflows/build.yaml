@@ -31,8 +31,8 @@ jobs:
 
       - name: Build the Image and Push to GHCR
         run: |
-          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:latest;
-          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:latest
+          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:${{ github.sha }};
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:${{ github.sha }}
 
   build-api-go:
     runs-on: ubuntu-latest
@@ -55,8 +55,8 @@ jobs:
 
       - name: Build the Image and Push to GHCR
         run: |
-          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:latest;
-          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:latest
+          docker build . -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:${{ github.sha }};
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:${{ github.sha }}
 
   build-db-mongo:
     runs-on: ubuntu-latest
@@ -79,5 +79,5 @@ jobs:
 
       - name: Build the Image and Push to GHCR
         run: |
-          docker build . -f db-image.Dockerfile -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:latest;
-          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:latest
+          docker build . -f db-image.Dockerfile -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:${{ github.sha }};
+          docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:${{ github.sha }}
