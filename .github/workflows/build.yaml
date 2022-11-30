@@ -81,3 +81,4 @@ jobs:
         run: |
           docker build . -f db-image.Dockerfile -t ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:${{ github.sha }};
           docker push ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:${{ github.sha }}
+
