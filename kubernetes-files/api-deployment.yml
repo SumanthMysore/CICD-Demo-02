@@ -13,17 +13,11 @@ spec:
     spec:
       containers:
         - name: api-container
-          image: ghcr.io/sumanthmysore/voteapp-be:123
+          image: ghcr.io/sumanthmysore/voteapp-be:latest
           imagePullPolicy: Always
           env:
           - name: MONGO_CONN_STR
             value: "mongodb://admin:password@mongo-0.mongo-svc,mongo-1.mongo-svc,mongo-2.mongo-svc:27017/langdb"
-            # - name: MONGO_CONN_STR
-            #   value: "mongo://18.223.100.61:27017/langdb"
-            # - name: MONGO_USERNAME
-            #   value: "admin"
-            # - name: MONGO_PASSWORD
-            #   value: "password"
       imagePullSecrets:
         - name: ghcr-secret 
   replicas: 4
