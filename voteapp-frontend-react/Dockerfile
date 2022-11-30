@@ -17,12 +17,13 @@
 
 
 
-FROM node:alpine AS build-stage
-WORKDIR /app
-COPY . .
-RUN npm ci --legacy-peer-deps
-RUN npm run build
+# FROM node:alpine AS build-stage
+# WORKDIR /app
+# COPY . .
+# RUN npm ci --legacy-peer-deps
+# RUN npm run build
 
 FROM nginx:alpine
 EXPOSE 80
-COPY --from=build-stage /app/build /usr/share/nginx/html
+# COPY --from=build-stage /app/build /usr/share/nginx/html
+COPY build /usr/share/nginx/html
