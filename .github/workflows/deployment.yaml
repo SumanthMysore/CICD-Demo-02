@@ -35,17 +35,17 @@ jobs:
       - name: Connect to the EKS Cluster
         run: aws eks update-kubeconfig --region ${{ secrets.EKS_CLUSTER_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
 
-      - name: Run the Deployments
-        run: |
-          kubectl apply -f db-deploy.yml;
-          kubectl apply -f api-deployment.yml;
-          kubectl apply -f fe-deployment.yml
-      
-      # - name: Run the Deployments
+      # - name: Execute this run for only 1st time.
       #   run: |
-      #     kubectl set image deployment/fe-deployment fe-container=ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:${{ github.sha }};
-      #     kubectl set image deployment/api-deployment api-container=ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:${{ github.sha }};
-      #     kubectl set image statefulset/mongo mongodb=ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:${{ github.sha }}
+      #     kubectl apply -f db-deploy.yml;
+      #     kubectl apply -f api-deployment.yml;
+      #     kubectl apply -f fe-deployment.yml
+      
+      - name: Execute this run after the 1st time.
+        run: |
+          kubectl set image deployment/fe-deployment fe-container=ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:${{ github.sha }};
+          kubectl set image deployment/api-deployment api-container=ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:${{ github.sha }};
+          kubectl set image statefulset/mongo mongodb=ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:${{ github.sha }}
 
       - name: Run the Services
         run: |
