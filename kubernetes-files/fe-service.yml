@@ -5,7 +5,6 @@ metadata:
   labels:
     type: fe
 spec:
-  # type: ClusterIP
   type: NodePort
   ports:
     - nodePort: 30004
