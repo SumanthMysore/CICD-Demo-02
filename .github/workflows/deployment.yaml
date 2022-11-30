@@ -25,9 +25,9 @@ jobs:
           repository: ${{ github.repository }}
           ref: master
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
