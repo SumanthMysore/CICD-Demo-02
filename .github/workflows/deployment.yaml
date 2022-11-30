@@ -3,9 +3,9 @@ run-name: ${{ github.actor }} has triggered the workflow.
 on:
   workflow_run:
     workflows: ["VOTEAPP-BUILD-CICD"]
-    types: 
-      - completed
-    
+    types:
+      - "completed"
+      - "requested"
 jobs:
   deployment:
     runs-on: ubuntu-latest
