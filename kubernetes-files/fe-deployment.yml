@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: fe-container
-          image: ghcr.io/sumanthmysore/voteapp-fe
+          image: ghcr.io/sumanthmysore/voteapp-fe:123
           imagePullPolicy: Always
       imagePullSecrets:
         - name: ghcr-secret  
