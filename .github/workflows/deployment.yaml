@@ -5,6 +5,7 @@ on:
     branches:
       - "master"
     paths:
+      - ".github/workflows/deployment.yaml"
       - "kubernetes-files/**"
   workflow_run:
     workflows: 
