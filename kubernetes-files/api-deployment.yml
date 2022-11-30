@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: api-container
-          image: ghcr.io/sumanthmysore/voteapp-be
+          image: ghcr.io/sumanthmysore/voteapp-be:123
           imagePullPolicy: Always
           env:
           - name: MONGO_CONN_STR
