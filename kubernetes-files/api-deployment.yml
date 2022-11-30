@@ -19,11 +19,11 @@ spec:
           # - name: MONGO_CONN_STR
           #   value: "mongodb://admin:password@mongo-0.mongo,mongo-1.mongo,mongo-2.mongo:27017/langdb"
             - name: MONGO_CONN_STR
-              value: mongo://18.223.100.61:27017/langdb
+              value: "mongo://18.223.100.61:27017/langdb"
             - name: MONGO_USERNAME
-              value: admin
+              value: "admin"
             - name: MONGO_PASSWORD
-              value: password
+              value: "password"
       imagePullSecrets:
         - name: ghcr-secret 
   replicas: 4
