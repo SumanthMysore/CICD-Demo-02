@@ -110,7 +110,6 @@ jobs:
         run: |
           kubectl set image deployment/fe-deployment fe-container=ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-fe:${{ github.sha }};
           kubectl set image deployment/api-deployment api-container=ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-be:${{ github.sha }};
-          kubectl set image deployment/mongo mongodb=ghcr.io/${{ secrets.GHCR_USERNAME }}/voteapp-db:${{ github.sha }}
 
       - name: Run the Services
         run: |

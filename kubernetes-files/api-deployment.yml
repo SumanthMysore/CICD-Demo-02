@@ -16,10 +16,8 @@ spec:
           image: ghcr.io/sumanthmysore/voteapp-be:randomtag
           imagePullPolicy: Always
           env:
-          # - name: MONGO_CONN_STR
-          #   value: "mongodb://admin:password@mongo-0.mongo-svc,mongo-1.mongo-svc,mongo-2.mongo-svc:27017/langdb"
           - name: MONGO_CONN_STR
-            value: "mongodb://admin:password@mongo-**.mongo-svc:27017/langdb"
+            value: "mongodb://admin:password@mongo-0.mongo-svc,mongo-1.mongo-svc,mongo-2.mongo-svc:27017/langdb"
       imagePullSecrets:
         - name: ghcr-secret 
   replicas: 4
