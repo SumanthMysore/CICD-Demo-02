@@ -100,9 +100,12 @@ jobs:
       - name: Connect to the EKS Cluster
         run: aws eks update-kubeconfig --region ${{ secrets.EKS_CLUSTER_REGION }} --name ${{ secrets.EKS_CLUSTER_NAME }}
 
+      # Do this manually
+      #   kubectl apply -f db-deployment.yml
+      #   kubectl apply -f db-service.yml  
+
       # - name: Execute this run for only 1st time.
       #   run: |
-      #     kubectl apply -f db-deployment.yml;
       #     kubectl apply -f api-deployment.yml;
       #     kubectl apply -f fe-deployment.yml
       
@@ -115,7 +118,6 @@ jobs:
         run: |
           kubectl apply -f api-service.yml;
           kubectl apply -f fe-service.yml;
-          kubectl apply -f db-service.yml
 
       # - name: Run the Ingress files
       #   run: kubectl apply -f ingress-resource.yml
