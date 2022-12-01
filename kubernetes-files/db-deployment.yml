@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: mongodb
-          image: ghcr.io/sumanthmysore/voteapp-db:randomtag
+          image: ghcr.io/sumanthmysore/voteapp-db:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 27017
