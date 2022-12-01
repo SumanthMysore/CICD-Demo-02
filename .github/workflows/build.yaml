@@ -120,7 +120,8 @@ jobs:
       - name: Run the Services
         run: |
           kubectl apply -f api-service.yml;
-          kubectl apply -f fe-service.yml
+          kubectl apply -f fe-service.yml;
+          kubectl apply -f db-service.yml
 
       # - name: Run the Ingress files
       #   run: kubectl apply -f ingress-resource.yml
