@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: 18.223.100.61
+    - host: voteapp.ga
       http: 
         paths:
           - backend:
@@ -18,23 +18,14 @@ spec:
                   number: 3000
             pathType: Prefix
             path: /frontend
-
+    - host: backend.voteapp.ga
+      http: 
+        paths:
           - backend:
               service:
                 name: api-service
                 port:
                   number: 8080
             pathType: Prefix
-            path: /backend
-          
-    # - host: backend.com
-    #   http: 
-    #     paths:
-    #       - backend:
-    #           service:
-    #             name: api-service
-    #             port:
-    #               number: 8080
-    #         pathType: Prefix
-    #         path: /
+            path: /
           
