@@ -15,9 +15,9 @@ spec:
               service:
                 name: fe-service
                 port:
-                  number: 3000
+                  number: 80
             pathType: Prefix
-            path: /frontend
+            path: /
     - host: backend.voteapp.ga
       http: 
         paths:
